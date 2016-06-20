@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe Game</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/ticTacToe.js"></script>
+</head>
+<body onload="start();">
+	<div id="press-me">
+		<h1>Welcome to the greatest Tic Tac Toe Game Ever</h1>
+<div class="requirements">
+<h2>Requirements</h2>
+<ol>
+	<li>A user should be able to click on different squares to make a move</li>
+	<li>Every click will alternate between marking an `X` and `O`</li>
+	<li>Upon marking of an individual cell, use JavaScript to add a class to
+  each cell to display separate colors</li>
+	<li>A cell should not be able to be replayed once marked</li>
+	<li>Add a reset button that will clear the contents of the board</li>
+</ol>
+</div>
+<div id="messages"></div>
+	</div>		
+		<table id="big_">
+			<tr>
+				<td class ="box" id="s1" onclick="nextMove(this);"></td>
+				<td class ="box" id="s2" onclick="nextMove(this);"></td>
+				<td class ="box" id="s3"  onclick="nextMove(this);"></td>
+			</tr>
+			<tr>
+				<td class ="box" id="s4" onclick="nextMove(this);"></td>
+				<td class ="box" id="s5" onclick="nextMove(this);"></td>
+				<td class ="box" id="s6" onclick="nextMove(this);"></td>
+			</tr>
+			<tr>
+				<td class ="box" id="s7" onclick="nextMove(this);"></td>
+				<td class ="box" id="s8" onclick="nextMove(this);"></td>
+				<td class ="box" id="s9" onclick="nextMove(this);"></td>
+			</tr>
+		</table>
+	<br>
+	<br>
+		<input type="button" value="Reset" onclick="reset()"/>
+</body>
+</html>
