@@ -1,0 +1,42 @@
+table{
+    margin: auto;
+}
+.box{
+	width: 200px;
+	height: 200px;
+	border: 3px solid navy;
+	text-align: center;
+	font-size: 60px;
+	font-weight: bold;
+}
+h1{
+	text-align: center;
+}
+body{
+	background-image: url("rain-forest.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: 1000px;
+}
+#messages{
+	text-align: center;
+	font-size: 24px;
+	padding-bottom: 15px;
+	font-weight: bold;
+
+}
+input{
+	display: block;
+	margin: auto;
+}
+button{
+	display: block;
+	margin: auto;
+}
+.requirements{
+	text-align: center;
+}
+.requirements li{
+	margin: auto;
+	display:block;
+}

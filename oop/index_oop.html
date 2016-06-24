@@ -2,10 +2,10 @@
 <html>
 <head>
 	<title>Tic Tac Toe Game</title>
-	<link rel="stylesheet" href="css/style.css">
-	<script type="text/javascript" src="js/ticTacToe.js"></script>
+	<link rel="stylesheet" href="style_oop.css">
 </head>
-<body onload="start();">
+
+<body onload="Game();">
 	<div id="press-me">
 		<h1>Welcome to the greatest Tic Tac Toe Game Ever</h1>
 <div class="requirements">
@@ -23,23 +23,25 @@
 	</div>		
 		<table id="big_">
 			<tr>
-				<td class ="box" id="s1" onclick="nextMove(this);"></td>
-				<td class ="box" id="s2" onclick="nextMove(this);"></td>
-				<td class ="box" id="s3" onclick="nextMove(this);"></td>
+				<td class ="box" id="s1" onclick="Game(this);"></td>
+				<td class ="box" id="s2" onclick="Game(this);"></td>
+				<td class ="box" id="s3" onclick="Game(this);"></td>
 			</tr>
 			<tr>
-				<td class ="box" id="s4" onclick="nextMove(this);"></td>
-				<td class ="box" id="s5" onclick="nextMove(this);"></td>
-				<td class ="box" id="s6" onclick="nextMove(this);"></td>
+				<td class ="box" id="s4" onclick="Game(this);"></td>
+				<td class ="box" id="s5" onclick="Game(this);"></td>
+				<td class ="box" id="s6" onclick="Game(this);"></td>
 			</tr>
 			<tr>
-				<td class ="box" id="s7" onclick="nextMove(this);"></td>
-				<td class ="box" id="s8" onclick="nextMove(this);"></td>
-				<td class ="box" id="s9" onclick="nextMove(this);"></td>
+				<td class ="box" id="s7" onclick="Game(this);"></td>
+				<td class ="box" id="s8" onclick="Game(this);"></td>
+				<td class ="box" id="s9" onclick="Game(this);"></td>
 			</tr>
 		</table>
 	<br>
 	<br>
 		<input type="button" value="Reset" onclick="reset()"/>
+		<script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
+		<script type="text/javascript" src="js_oop.js"></script>
 </body>
 </html>

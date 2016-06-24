@@ -1,0 +1,21 @@
+ADT’s in Tic Tac Toe Solution 
+
+Constructor ADT’s for project, and different ADT’s that each one of my functions would be going into 
+
+1) game - 
+	
+function start();
+function message();
+function switchTurn();
+
+
+2) board 
+
+function checkForWinner();
+function checkRow ();
+function getBox();
+function reset();
+
+3) Player 
+
+- Two simple objects, player X and Player O
