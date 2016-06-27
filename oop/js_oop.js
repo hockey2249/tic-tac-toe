@@ -39,7 +39,7 @@ Game.prototype.getBox = function(number) {
     return document.getElementById("s" + number).textContent;
 };
 Game.prototype.checkRow = function(a, b, c) {
-    if(this.getBox(a) && this.getBox(b) && this.getBox(c) && this.getBox(a) === this.getBox(b)&& this.getBox(b)=== this.getBox(c)) {
+    if(this.getBox(a) && this.getBox(b) && this.getBox(c) && this.getBox(a) === this.getBox(b) && this.getBox(b)=== this.getBox(c)) {
         return true;
     }
     return false;
@@ -59,7 +59,6 @@ Game.prototype.checkForWinner = function() {
     return false;
 };
 function init(){
-    console.log("Main init function");
     var myGame = new Game();
     myGame.init();
 
