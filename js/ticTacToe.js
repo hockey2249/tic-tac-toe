@@ -1,72 +1,90 @@
-var display = 'X';
-var boxColor = "red";
-
-function start(){
-		var display = 'X';	
-		message(display + ", please make your move first.");
-}
-function message(mess){
-	document.getElementById("messages").textContent = mess;
+window.onload = function(){
+  new Game().start();
 }
 
-function nextMove(box){
-	if (box.textContent == ''){
-		box.textContent = display;
-		box.style.backgroundColor = boxColor;
-		switchTurn();
-	}else {
-		message('Please choose another square, this square is already taken!');
-	}
-}
-function switchTurn(){
-	
-	if(checkForWinner(display)){
-		message("Congratulations, " + display + "! You win!");
-		winner = display;
-		alert(display + ", you won! Please don't click any more spaces.");
-	}else if (display == 'X'){
-		display = 'O';
-		boxColor = "blue";
-		message(display + ", please make your move.");
-	} else {
-		display = 'X';
-		message(display + ", please make your move.");
-		boxColor = "red";
-	}
-	message.textContent = display + " goes!";
-}
-function checkForWinner(allow){
-	var result = false;
-	
-	if( checkRow(1,2,3, allow) || 
-		checkRow(4,5,6, allow) || 
-		checkRow(7,8,9, allow) ||
-		checkRow(1,4,7, allow) ||
-		checkRow(2,5,8, allow) ||
-		checkRow(3,6,9, allow) ||
-		checkRow(1,5,9, allow) ||
-		checkRow(3,5,7, allow)) {
-		
-		result = true;
-	}
-	return result;
-}
-function checkRow(a, b, c, allow){
-	var result = false;
-	if(getBox(a) == allow && getBox(b) == allow && getBox(c) == allow) {
-		result = true;
-	}
-	return result;
-}
-function getBox(number){
-	return document.getElementById("s" + number).textContent;
-}
+function Game() {
+  this.boxes = document.getElementsByTagName("td");
+  this.turnText = document.querySelector(".playerTurn");
+  this.counter = 1;
+  this.winCounter = 0;
+  this.OMoves = [];
+  this.XMoves = [];
+  this.winningCombinations= [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+};
 
-function reset(){
-	var gameBoxes = document.getElementsByClassName("box");
-	for (var i = 0; i < gameBoxes.length; i++){
-		gameBoxes[i].style.backgroundColor='purple';
-		gameBoxes[i].innerHTML= '';
-	}
-	return start();		
-}
+Game.prototype.start = function(){
+  this.addXandOListener();
+  this.addResetListener();
+};
+
+ Game.prototype.addXandOListener = function(){
+  for (var i = this.boxes.length - 1; i >= 0; i--) {
+    this.boxes[i].addEventListener("click", this.addXorO.bind(this));
+  };
+};
+
+Game.prototype.addXorO = function(event){
+  if (event.target.innerHTML.length === 0){
+    if (this.counter % 2 === 0) {
+      this.OMoves.push(parseInt(event.target.getAttribute("data-num")));
+      event.target.innerHTML = "O";
+      event.target.setAttribute("class","O");
+      this.turnText.innerHTML = "It is X's turn";
+      this.counter++;
+      this.checkForWin(this.OMoves, "O");
+    }
+    else {
+      this.XMoves.push(parseInt(event.target.getAttribute("data-num")));
+      event.target.innerHTML = "X";
+      event.target.setAttribute("class","X");
+      this.turnText.innerHTML = "It is O's turn";
+      this.counter++;
+      this.checkForWin(this.XMoves, "X");
+    };
+  // if the Game.counter is greater than or equal to 10, the game is a draw!
+  if (this.counter >= 10){
+    this.turnText.innerHTML = "Game Over!";
+    var conf = confirm("It's a draw, do you want to play again?");
+    if(conf){
+      this.resetBoard.bind(this);
+    };
+  };
+};
+};
+
+Game.prototype.addResetListener = function(){
+  var resetButton = document.getElementById("reset");
+  resetButton.addEventListener("click", this.resetBoard.bind(this));
+};
+
+ Game.prototype.checkForWin = function(movesArray, name){
+  // loop over the first array of winning combinations
+  for (i = 0; i < this.winningCombinations.length; i++) {
+    // reset the winCounter each time!
+    winCounter = 0;
+    // loop over each individual array
+    for (var j = 0; j < this.winningCombinations[i].length; j++) {
+      // if the number in winning combo array is === a number in moves array, add to winCounter
+      if(movesArray.indexOf(this.winningCombinations[i][j]) !== -1){
+        winCounter++;
+      };
+      // if winCounter === 3 that means all 3 moves are winning combos and game is over!
+      if(winCounter === 3){
+        alert("Game over, " + name + " wins!");
+        this.resetBoard.bind(this);
+      };
+    };
+  };
+};
+
+ Game.prototype.resetBoard = function(){
+  for (var i = this.boxes.length - 1; i >= 0; i--) {
+    this.boxes[i].innerHTML="";
+    this.boxes[i].setAttribute("class","clear");
+  };
+  this.OMoves = [];
+  this.XMoves = [];
+  winCounter=0;
+  this.counter = 1;
+  this.turnText.innerHTML = "It is X's turn";
+};
